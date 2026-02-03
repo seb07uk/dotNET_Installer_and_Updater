@@ -1,0 +1,9 @@
+        dotNET Runtime Installer and Updater 
+                                    ver.2.0
+
+                     Sebastian  Januchowski                 
+                  polsoft.its@fastservice.com            
+                 https://github.com/seb07uk          
+                         polsoft.ITS London                
+
+        (c) 2026 polsoft.ITS. All rights reserved.

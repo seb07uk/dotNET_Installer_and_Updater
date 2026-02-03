@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>dotNET Runtime Installer and Updater – Help</title>
+
+<style>
+    body {
+        background-color: #0d0d0d;
+        color: #e6e6e6;
+        font-family: 'Segoe UI', Consolas, monospace;
+        line-height: 1.6;
+        padding: 20px;
+        transition: background 0.3s, color 0.3s;
+        overflow-x: hidden;
+    }
+
+    /* --- 3D EFFECTS FOR HEADERS --- */
+    .header-container {
+        perspective: 1000px;
+        text-align: center;
+        margin-bottom: 40px;
+        cursor: default;
+    }
+
+    .three-d-title {
+        display: inline-block;
+        transition: transform 0.5s ease;
+        transform-style: preserve-3d;
+    }
+
+    .header-container:hover .three-d-title {
+        transform: rotateX(10deg) rotateY(-10deg);
+    }
+
+    h1 {
+        font-size: 2.5em;
+        color: #a67dff;
+        text-shadow: 0 0 10px #512bd4, 0 0 20px #512bd4;
+        margin: 0;
+        animation: float 4s ease-in-out infinite;
+    }
+
+    h3 {
+        color: #a67dff;
+        text-shadow: 0 0 5px #512bd4;
+        opacity: 0.9;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) translateZ(20px); }
+        50% { transform: translateY(-10px) translateZ(50px); }
+    }
+
+    /* --- LAYOUT --- */
+    .center { text-align: center; }
+
+    .section {
+        margin-bottom: 30px;
+        padding: 15px;
+        border-left: 3px solid #512bd4;
+        background: rgba(81, 43, 212, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .section:hover {
+        background: rgba(81, 43, 212, 0.1);
+        transform: translateX(5px);
+    }
+
+    .info-box {
+        margin-top: 15px;
+        padding: 15px;
+        background: rgba(166, 125, 255, 0.05);
+        border: 1px solid rgba(81, 43, 212, 0.3);
+        border-radius: 4px;
+    }
+
+    /* --- TABLES --- */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        background: rgba(20, 20, 20, 0.6);
+    }
+
+    th, td {
+        border: 1px solid #333;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background-color: rgba(81, 43, 212, 0.3);
+        color: #a67dff;
+    }
+
+    .key {
+        color: #33ccff;
+        font-weight: bold;
+        font-family: 'Consolas', monospace;
+        background: rgba(0,0,0,0.5);
+        padding: 2px 8px;
+        border-radius: 3px;
+        border: 1px solid #512bd4;
+        box-shadow: 0 0 5px rgba(81, 43, 212, 0.5);
+    }
+
+    /* --- BUTTONS & ANIMATIONS --- */
+    .btn {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 12px 25px;
+        background: #512bd4;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 4px;
+        box-shadow: 0 0 10px #512bd4;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: #6a40ed;
+        transform: scale(1.05);
+        box-shadow: 0 0 20px #a67dff;
+    }
+
+    .glow-anim {
+        color: #a67dff;
+        text-decoration: none;
+        transition: 0.3s;
+        text-shadow: 0 0 5px #512bd4;
+    }
+
+    .glow-anim:hover {
+        color: #fff;
+        text-shadow: 0 0 15px #a67dff;
+    }
+
+    /* --- LIGHT MODE --- */
+    .light-mode {
+        background-color: #f8f9fa !important;
+        color: #212529 !important;
+    }
+
+    .light-mode h1, .light-mode h3 {
+        color: #512bd4 !important;
+        text-shadow: none !important;
+    }
+
+    .light-mode .section {
+        background: rgba(81, 43, 212, 0.08) !important;
+        border-left: 3px solid #512bd4 !important;
+    }
+
+    .light-mode table { background: #fff !important; }
+    .light-mode th { background-color: #eee !important; color: #512bd4 !important; }
+    .light-mode td { border: 1px solid #ccc !important; }
+    .light-mode .key { color: #0077cc !important; background: #eee !important; border: 1px solid #ccc !important; }
+
+    .footer { margin-top: 40px; font-size: 14px; color: #888; text-align: center; }
+</style>
+
+<script>
+function switchLang(lang) {
+    document.querySelectorAll(".lang").forEach(el => el.style.display = "none");
+    document.getElementById(lang).style.display = "block";
+}
+function toggleTheme() {
+    document.body.classList.toggle("light-mode");
+}
+</script>
+</head>
+
+<body onload="switchLang('en')">
+
+<div style="text-align:center; margin-bottom:30px;">
+    <div class="glow-anim" style="display:inline-block; padding:8px 15px; border:1px solid #512bd4; cursor:pointer; border-radius:4px; margin-right:10px;" onclick="switchLang(document.getElementById('en').style.display==='none' ? 'en' : 'pl')">
+        EN / PL
+    </div>
+    <div class="glow-anim" style="display:inline-block; padding:8px 15px; border:1px solid #512bd4; cursor:pointer; border-radius:4px; margin-right:10px;" onclick="toggleTheme()">
+        Dark / Light Mode
+    </div>
+    <a href="https://github.com/seb07uk" class="glow-anim" style="display:inline-block; padding:8px 15px; border:1px solid #512bd4; border-radius:4px; text-decoration:none;">
+        GitHub: seb07uk
+    </a>
+</div>
+
+<div id="en" class="lang">
+    <div class="header-container">
+        <div class="three-d-title">
+            <h1>dotNET Runtime Installer and Updater v2.0</h1>
+            <h3>polsoft.ITS – London</h3>
+        </div>
+    </div>
+
+    <p>Author: <b>Sebastian Januchowski</b><br>
+    Contact: <a href="mailto:polsoft.its@fastservice.com" class="glow-anim">polsoft.its@fastservice.com</a></p>
+
+    <div class="section">
+        <h2>Program Description</h2>
+        <p>This tool allows you to quickly install and update .NET Runtime, SDK, Desktop Runtime and ASP.NET Core Runtime versions from 3.1 up to 10.0 (Preview). The program uses <b>winget</b> and official Microsoft installation scripts.</p>
+        
+        <div class="info-box">
+            <h3>Application Features</h3>
+            <p><b>32-bit Windows Application</b> - This is a native 32-bit Windows application with built-in CLI module that provides independence and portability. The application includes an embedded winget tool, which can also be used through this app for package management.</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>What is .NET?</h3>
+            <p><b>.NET</b> is a free, cross-platform, open-source developer platform for building many different types of applications. It is maintained by Microsoft and the .NET community on GitHub.</p>
+            <p><b>Purpose:</b> It is used to run and develop applications ranging from web (ASP.NET), desktop (WPF, WinForms) to cloud, mobile, and IoT services. Without the appropriate <b>Runtime</b> installed, applications built on this framework will not start on your system.</p>
+            <p><b>Core Requirements for .NET:</b></p>
+            <ul>
+                <li>Windows 7 SP1, 8.1, 10, 11 or Windows Server equivalents.</li>
+                <li>Disk Space: Approx. 200MB - 1GB depending on version (SDK requires more).</li>
+                <li>RAM: Minimum 512MB (4GB+ recommended for development).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Menu Shortcuts</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Version</th>
+                    <th>Runtime</th>
+                    <th>SDK</th>
+                    <th>Desktop</th>
+                    <th>ASP.NET Core</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>.NET 3.1</td><td><span class="key">1</span></td><td><span class="key">2</span></td><td><span class="key">3</span></td><td><span class="key">4</span></td></tr>
+                <tr><td>.NET 5.0</td><td><span class="key">5</span></td><td><span class="key">6</span></td><td><span class="key">7</span></td><td><span class="key">8</span></td></tr>
+                <tr><td>.NET 6.0</td><td><span class="key">9</span></td><td><span class="key">q</span></td><td><span class="key">w</span></td><td><span class="key">e</span></td></tr>
+                <tr><td>.NET 7.0</td><td><span class="key">r</span></td><td><span class="key">t</span></td><td><span class="key">y</span></td><td><span class="key">u</span></td></tr>
+                <tr><td>.NET 8.0</td><td><span class="key">i</span></td><td><span class="key">o</span></td><td><span class="key">p</span></td><td><span class="key">a</span></td></tr>
+                <tr><td>.NET 9.0</td><td><span class="key">s</span></td><td><span class="key">d</span></td><td><span class="key">f</span></td><td><span class="key">g</span></td></tr>
+                <tr><td>.NET 10.0 (Preview)</td><td><span class="key">h</span></td><td><span class="key">j</span></td><td><span class="key">k</span></td><td><span class="key">l</span></td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:20px;">System & Tools</h3>
+        <table style="width: auto;">
+            <tr><td><span class="key">z</span> PowerShell script</td><td><span class="key">m</span> Bash script</td></tr>
+            <tr><td><span class="key">c</span> Microsoft .NET website</td><td><span class="key">b</span> About</td></tr>
+            <tr><td><span class="key">x</span> Exit</td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Requirements</h2>
+        <ul>
+            <li>Windows 10 / 11</li>
+            <li><b>winget</b> installed</li>
+            <li>Internet connection</li>
+            <li>Administrator privileges (recommended)</li>
+        </ul>
+    </div>
+
+    <a class="btn" href="javascript:window.close();">Close Help</a>
+    <div class="footer">polsoft.ITS™ – 2026<br>Tool created for developers and system administrators.</div>
+</div>
+
+<div id="pl" class="lang" style="display:none;">
+    <div class="header-container">
+        <div class="three-d-title">
+            <h1>dotNET Runtime Installer and Updater v2.0</h1>
+            <h3>polsoft.ITS – London</h3>
+        </div>
+    </div>
+
+    <p>Autor: <b>Sebastian Januchowski</b><br>
+    Kontakt: <a href="mailto:polsoft.its@fastservice.com" class="glow-anim">polsoft.its@fastservice.com</a></p>
+
+    <div class="section">
+        <h2>Opis programu</h2>
+        <p>To narzędzie umożliwia szybkie instalowanie oraz aktualizowanie środowisk .NET Runtime, SDK, Desktop Runtime oraz ASP.NET Core Runtime w wersjach od 3.1 do 10.0 (Preview). Program korzysta z <b>winget</b> oraz oficjalnych skryptów instalacyjnych Microsoft.</p>
+        
+        <div class="info-box">
+            <h3>Cechy aplikacji</h3>
+            <p><b>Aplikacja 32-bitowa dla Windows</b> - Jest to natywna 32-bitowa aplikacja Windows z wbudowanym modułem CLI, co zapewnia niezależność i przenośność. Aplikacja zawiera wbudowane narzędzie winget, które może być również używane za pośrednictwem tej aplikacji do zarządzania pakietami.</p>
+        </div>
+        
+        <div class="info-box">
+            <h3>Co to jest .NET?</h3>
+            <p><b>.NET</b> to darmowa, wieloplatformowa platforma programistyczna o otwartym kodzie źródłowym, przeznaczona do tworzenia wielu rodzajów aplikacji. Jest rozwijana przez firmę Microsoft oraz społeczność .NET.</p>
+            <p><b>Do czego służy:</b> Służy do uruchamiania i tworzenia aplikacji webowych (ASP.NET), desktopowych (WPF, WinForms), chmurowych, mobilnych oraz usług IoT.</p>
+            <p><b>Wymagania .NET:</b></p>
+            <ul>
+                <li>System: Windows 7 SP1, 8.1, 10, 11 lub Windows Server.</li>
+                <li>Miejsce na dysku: Ok. 200MB - 1GB zależnie od wersji.</li>
+                <li>RAM: Minimum 512MB (zalecane 4GB+).</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Skróty i obsługa menu</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Wersja</th>
+                    <th>Runtime</th>
+                    <th>SDK</th>
+                    <th>Desktop</th>
+                    <th>ASP.NET Core</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>.NET 3.1</td><td><span class="key">1</span></td><td><span class="key">2</span></td><td><span class="key">3</span></td><td><span class="key">4</span></td></tr>
+                <tr><td>.NET 5.0</td><td><span class="key">5</span></td><td><span class="key">6</span></td><td><span class="key">7</span></td><td><span class="key">8</span></td></tr>
+                <tr><td>.NET 6.0</td><td><span class="key">9</span></td><td><span class="key">q</span></td><td><span class="key">w</span></td><td><span class="key">e</span></td></tr>
+                <tr><td>.NET 7.0</td><td><span class="key">r</span></td><td><span class="key">t</span></td><td><span class="key">y</span></td><td><span class="key">u</span></td></tr>
+                <tr><td>.NET 8.0</td><td><span class="key">i</span></td><td><span class="key">o</span></td><td><span class="key">p</span></td><td><span class="key">a</span></td></tr>
+                <tr><td>.NET 9.0</td><td><span class="key">s</span></td><td><span class="key">d</span></td><td><span class="key">f</span></td><td><span class="key">g</span></td></tr>
+                <tr><td>.NET 10.0 (Preview)</td><td><span class="key">h</span></td><td><span class="key">j</span></td><td><span class="key">k</span></td><td><span class="key">l</span></td></tr>
+            </tbody>
+        </table>
+
+        <h3 style="margin-top:20px;">System i Narzędzia</h3>
+        <table style="width: auto;">
+            <tr><td><span class="key">z</span> Skrypt PowerShell</td><td><span class="key">m</span> Skrypt Bash</td></tr>
+            <tr><td><span class="key">c</span> Strona Microsoft .NET</td><td><span class="key">b</span> Informacje</td></tr>
+            <tr><td><span class="key">x</span> Wyjście</td><td></td></tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Wymagania</h2>
+        <ul>
+            <li>Windows 10 / 11</li>
+            <li>Zainstalowany <b>winget</b></li>
+            <li>Połączenie z Internetem</li>
+            <li>Uprawnienia administratora (zalecane)</li>
+        </ul>
+    </div>
+
+    <a class="btn" href="javascript:window.close();">Zamknij pomoc</a>
+    <div class="footer">polsoft.ITS™ – 2026<br>Narzędzie stworzone dla programistów i administratorów systemowych.</div>
+</div>
+
+</body>
+</html>
