@@ -1,3 +1,6 @@
+<img width="1102" height="638" alt="image" src="https://github.com/user-attachments/assets/f64735ba-53aa-49fb-9454-ff7afe566f1d" />
+
+
 # Documentation: dotNET Installer and Updater v2.0
 
 ## Table of Contents
